@@ -1,0 +1,26 @@
+.Modal {
+  padding: 20px;
+}
+.Modal__Article {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+.Modal__Text {
+  margin-bottom: 30px;
+}
+
+.Modal__Buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Modal__Buttons button {
+  width: 200px;
+  height: 40px;
+  border: 3px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.Modal__Buttons button:first-child {
+  margin-right: 30px;
+}

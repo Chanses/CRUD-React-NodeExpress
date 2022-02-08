@@ -1,0 +1,23 @@
+.Header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-weight: 500;
+  width: 1215px;
+  margin-bottom: 30px;
+}
+.Header button {
+  width: 200px;
+  height: 40px;
+  outline: none;
+  border: 3px black solid;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.Header button:active {
+  background-color: black;
+  color: white;
+}
+.Header__title {
+  font-size: 30px;
+}

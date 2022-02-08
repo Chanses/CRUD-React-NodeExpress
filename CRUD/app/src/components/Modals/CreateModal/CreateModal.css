@@ -1,0 +1,60 @@
+.CreateForm {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+.CreateForm input {
+  height: 30px;
+  font-size: 16px;
+  outline: none;
+  border: 3px solid black;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+.CreateForm-input {
+  display: flex;
+  flex-direction: column;
+}
+.CreateForm-input input {
+  margin: 5px 0 15px 0;
+}
+.CreateForm__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.CreateForm__row input:first-child {
+  margin-right: 60px;
+}
+.CreateForm__row-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+.CreateForm__row-buttons button:first-child {
+  margin-right: 30px;
+}
+.CreateForm__row-buttons button {
+  width: 200px;
+  height: 40px;
+  border: 3px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.CreateForm__row-radio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.CreateForm__row-radio:first-child {
+  margin-right: 30px;
+}
+.CreateForm__row-radio input {
+  height: 15px;
+  margin-bottom: 0;
+}

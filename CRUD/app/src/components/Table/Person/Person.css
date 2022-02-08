@@ -1,0 +1,30 @@
+.TableRow {
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: black 2px solid;
+  padding: 5px;
+  font-size: 18px;
+}
+.TableRow:last-child {
+  border: none;
+}
+
+.TableRow__column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.TableRow__column:last-child {
+  width: 40%;
+}
+.TableRow__column input {
+  height: 25px;
+}
+.TableRow__column-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
