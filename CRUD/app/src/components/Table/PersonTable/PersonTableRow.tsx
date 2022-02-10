@@ -15,7 +15,7 @@ interface IPersonRow {
   deleteImg: string;
 }
 
-const PersonRow = (props: IPersonRow) => {
+const PersonTableRow = (props: IPersonRow) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isInputDisable, setIsInputDisable] = useState<boolean>(true);
   const ageInputRef = useRef<any>();
@@ -53,8 +53,8 @@ const PersonRow = (props: IPersonRow) => {
   }, []);
 
   return (
-    <form className="TableRow">
-      <div className="TableRow__column">
+    <tr className="TableRow">
+      <td className="TableRow__column">
         <Input
           disabled={isInputDisable}
           type="text"
@@ -66,8 +66,8 @@ const PersonRow = (props: IPersonRow) => {
             });
           }}
         />
-      </div>
-      <div className="TableRow__column">
+      </td>
+      <td className="TableRow__column">
         <Input
           disabled={isInputDisable}
           type="text"
@@ -82,8 +82,8 @@ const PersonRow = (props: IPersonRow) => {
             });
           }}
         />
-      </div>
-      <div className="TableRow__column">
+      </td>
+      <td className="TableRow__column">
         <Input
           disabled={isInputDisable}
           type="number"
@@ -97,13 +97,14 @@ const PersonRow = (props: IPersonRow) => {
             });
           }}
         />
-      </div>
-      <div className="TableRow__column-radio">
+      </td>
+      <td className="TableRow__column-radio">
         <InputRadio
+          className="TableRow__column-radio"
           disabled={isInputDisable}
-          name="gender"
+          name={`gender${person.id}`}
           text="Мужчина"
-          checked={person.gender ? true : false}
+          checked={person.gender}
           onChange={() =>
             setPerson((prevState) => {
               return { ...prevState, gender: true };
@@ -112,7 +113,7 @@ const PersonRow = (props: IPersonRow) => {
         />
         <InputRadio
           disabled={isInputDisable}
-          name="gender"
+          name={`gender${person.id}`}
           text="Женщина"
           checked={!person.gender ? true : false}
           onChange={() =>
@@ -121,30 +122,32 @@ const PersonRow = (props: IPersonRow) => {
             })
           }
         />
-      </div>
-      {!isEdit ? (
-        <ActionCell
-          submitButtonType={"button"}
-          cancelButtonType={"button"}
-          className="TableRow__column"
-          onSubmitClick={toggleEdit}
-          onCancelClick={props.showDeleteModal}
-          acceptButtonImg={props.editImg}
-          cancelButtonImg={props.deleteImg}
-        />
-      ) : (
-        <ActionCell
-          submitButtonType={"button"}
-          cancelButtonType={"button"}
-          className="TableRow__column"
-          onSubmitClick={editPerson}
-          onCancelClick={closeEdit}
-          acceptButtonImg={props.submitEditImg}
-          cancelButtonImg={props.cancelEditImg}
-        />
-      )}
-    </form>
+      </td>
+      <td>
+        {!isEdit ? (
+          <ActionCell
+            submitButtonType={"button"}
+            cancelButtonType={"button"}
+            className="TableRow__column"
+            onSubmitClick={toggleEdit}
+            onCancelClick={props.showDeleteModal}
+            acceptButtonImg={props.editImg}
+            cancelButtonImg={props.deleteImg}
+          />
+        ) : (
+          <ActionCell
+            submitButtonType={"button"}
+            cancelButtonType={"button"}
+            className="TableRow__column"
+            onSubmitClick={editPerson}
+            onCancelClick={closeEdit}
+            acceptButtonImg={props.submitEditImg}
+            cancelButtonImg={props.cancelEditImg}
+          />
+        )}
+      </td>
+    </tr>
   );
 };
 
-export default observer(PersonRow);
+export default observer(PersonTableRow);

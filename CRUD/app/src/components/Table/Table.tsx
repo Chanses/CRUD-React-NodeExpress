@@ -1,35 +1,32 @@
 import { observer } from "mobx-react-lite";
-import React, { useLayoutEffect } from "react";
-import { IPersonItem } from "../../modals/IPerson";
-import ModalService from "../../services/ModalService";
-import PersonRequests from "../../services/PersonRequests";
-import ConfirmModal from "../Modals/ConfirmModal/ConfirmModal";
-import PersonRowContainer from "./Person/PersonRowContainer";
+import React from "react";
 import "./Table.css";
-import TableHeader from "./TableHeader";
 
-interface ITable {
-  personList: IPersonItem[];
+interface IHeader {
+  caption: string;
+  width?: string;
+}
+interface ITableProps {
+  /**Рендер-функция содержимого таблицы */
+  bodyRender: () => React.ReactNode;
+  /**Заголовок и ширина колонки */
+  headerCaptions: IHeader[];
 }
 
-const Table = (props: ITable) => {
-  useLayoutEffect(() => {
-    try {
-      PersonRequests.getPersonsAll();
-    } catch (error) {
-      alert(error);
-    }
-  }, []);
+const Table = (props: ITableProps) => {
   return (
-    <>
-      <div className="Table">
-        <TableHeader />
-        {props.personList.map((person) => (
-          <PersonRowContainer person={person} key={person.id} />
-        ))}
-      </div>
-      <ConfirmModal {...ModalService.modals.confirmModal!} />
-    </>
+    <table>
+      <thead>
+        <tr>
+          {props.headerCaptions.map((column) => (
+            <td key={column.caption} width={column.width}>
+              {column.caption}
+            </td>
+          ))}
+        </tr>
+      </thead>
+      <tbody>{props.bodyRender()}</tbody>
+    </table>
   );
 };
 

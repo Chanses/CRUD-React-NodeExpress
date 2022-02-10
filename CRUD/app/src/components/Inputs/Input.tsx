@@ -36,6 +36,8 @@ const Input = React.forwardRef<HTMLInputElement, IInput>(
                   background: "none",
                   border: "none",
                   textAlign: "center",
+                  fontSize: "16px",
+                  color: "black",
                 },
               }
             : { disabled: false })}
