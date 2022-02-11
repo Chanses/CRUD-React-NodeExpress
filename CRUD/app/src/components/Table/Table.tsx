@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import React from "react";
 import "./Table.css";
 
-interface IHeader {
+interface ITableColumnConfig {
   caption: string;
   width?: string;
 }
@@ -10,7 +10,7 @@ interface ITableProps {
   /**Рендер-функция содержимого таблицы */
   bodyRender: () => React.ReactNode;
   /**Заголовок и ширина колонки */
-  headerCaptions: IHeader[];
+  columnConfig: ITableColumnConfig[];
 }
 
 const Table = (props: ITableProps) => {
@@ -18,7 +18,7 @@ const Table = (props: ITableProps) => {
     <table>
       <thead>
         <tr>
-          {props.headerCaptions.map((column) => (
+          {props.columnConfig.map((column) => (
             <td key={column.caption} width={column.width}>
               {column.caption}
             </td>

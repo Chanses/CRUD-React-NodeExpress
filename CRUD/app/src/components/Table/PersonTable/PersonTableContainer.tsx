@@ -1,18 +1,18 @@
 import { observer } from "mobx-react-lite";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import ModalService from "../../../services/ModalService";
 import PersonRequests from "../../../services/PersonRequests";
 import PersonStore from "../../../stores/PersonStore";
 import Table from "../Table";
-import PersonTableRow from "./PersonTableRow";
+import PersonTableLine from "./PersonTableLine";
 import editImg from "../../../images/editImg.png";
 import deleteImg from "../../../images/deleteImg.png";
 import acceptImg from "../../../images/acceptImg.png";
 import cancelImg from "../../../images/cancelImg.png";
 import ConfirmModal from "../../Modals/ConfirmModal/ConfirmModal";
 
-const TableContainer = () => {
-  useLayoutEffect(() => {
+const PersonTableContainer = () => {
+  useEffect(() => {
     try {
       PersonRequests.getPersonsAll();
     } catch (error) {
@@ -35,9 +35,9 @@ const TableContainer = () => {
     });
   };
 
-  const renderPersonData = () => {
+  const renderPersons = () => {
     return PersonStore.personList.map((person) => (
-      <PersonTableRow
+      <PersonTableLine
         key={person.id}
         person={person}
         showDeleteModal={() => showDeleteModal(person.id)}
@@ -48,7 +48,7 @@ const TableContainer = () => {
       />
     ));
   };
-  const personTableHeader = [
+  const personTableColumnValues = [
     { caption: "Имя", width: "25%" },
     { caption: "Никнейм", width: "25%" },
     { caption: "Возраст", width: "15%" },
@@ -58,10 +58,13 @@ const TableContainer = () => {
 
   return (
     <>
-      <Table bodyRender={renderPersonData} headerCaptions={personTableHeader} />
+      <Table
+        bodyRender={renderPersons}
+        columnConfig={personTableColumnValues}
+      />
       <ConfirmModal {...ModalService.modals.confirmModal!} />
     </>
   );
 };
 
-export default observer(TableContainer);
+export default observer(PersonTableContainer);

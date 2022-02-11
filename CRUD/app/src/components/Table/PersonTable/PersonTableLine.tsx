@@ -15,7 +15,7 @@ interface IPersonRow {
   deleteImg: string;
 }
 
-const PersonTableRow = (props: IPersonRow) => {
+const PersonTableLine = (props: IPersonRow) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isInputDisable, setIsInputDisable] = useState<boolean>(true);
   const ageInputRef = useRef<any>();
@@ -150,4 +150,4 @@ const PersonTableRow = (props: IPersonRow) => {
   );
 };
 
-export default observer(PersonTableRow);
+export default observer(PersonTableLine);
