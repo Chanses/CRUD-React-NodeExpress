@@ -1,7 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
 import ModalService from "../../../services/ModalService";
-import PersonRequests from "../../../services/PersonRequests";
 import PersonStore from "../../../stores/PersonStore";
 import Table from "../Table";
 import PersonTableLine from "./PersonTableLine";
@@ -14,7 +13,7 @@ import ConfirmModal from "../../Modals/ConfirmModal/ConfirmModal";
 const PersonTableContainer = () => {
   useEffect(() => {
     try {
-      PersonRequests.getPersonsAll();
+      PersonStore.getPersonsAll();
     } catch (error) {
       alert(error);
     }
@@ -26,7 +25,7 @@ const PersonTableContainer = () => {
       title: "Удаление пользователя",
       onSubmitClick: () => {
         try {
-          PersonRequests.deletePerson(id);
+          PersonStore.deletePerson(id);
           ModalService.closeModal("confirmModal");
         } catch (error) {
           alert(error);

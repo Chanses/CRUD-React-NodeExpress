@@ -1,14 +1,13 @@
 
 import { ModalRegistry } from "../modals/enum/modalNameRegistry";
 import { makeObservable, observable, action } from "mobx"
-class ModalStore {
+class ModalService {
     modals: Partial<ModalRegistry>;
     constructor() {
         makeObservable(this, {
             modals: observable,
             showModal: action,
             closeModal: action,
-
         })
         this.modals = {};
     }
@@ -26,8 +25,6 @@ class ModalStore {
     closeModal(modalName: keyof ModalRegistry) {
         delete this.modals[modalName];
     }
-
-
 }
 
-export default new ModalStore();                                                                                                       
+export default new ModalService();                                                                                                       

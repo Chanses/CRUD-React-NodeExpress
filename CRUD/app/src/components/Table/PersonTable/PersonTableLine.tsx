@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useRef, useState } from "react";
 import { IPersonItem } from "../../../modals/IPerson";
-import PersonRequests from "../../../services/PersonRequests";
+import PersonStore from "../../../stores/PersonStore";
 import Input from "../../Inputs/Input";
 import InputRadio from "../../Inputs/InputRadio";
 import ActionCell from "../ActionCell/ActionCell";
 
-interface IPersonRow {
+interface IPersonTableLine {
   person: IPersonItem;
   showDeleteModal: () => void;
   submitEditImg: string;
@@ -15,7 +15,7 @@ interface IPersonRow {
   deleteImg: string;
 }
 
-const PersonTableLine = (props: IPersonRow) => {
+const PersonTableLine = (props: IPersonTableLine) => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [isInputDisable, setIsInputDisable] = useState<boolean>(true);
   const ageInputRef = useRef<any>();
@@ -33,9 +33,10 @@ const PersonTableLine = (props: IPersonRow) => {
     setIsEdit(!isEdit);
     setIsInputDisable(!isInputDisable);
   };
+
   const editPerson = () => {
     try {
-      PersonRequests.editPerson(person);
+      PersonStore.editPerson(person);
       toggleEdit();
     } catch (error) {
       setPerson(props.person);
@@ -43,10 +44,12 @@ const PersonTableLine = (props: IPersonRow) => {
       alert(error);
     }
   };
+
   const closeEdit = () => {
     setPerson(props.person);
     toggleEdit();
   };
+
   useEffect(() => {
     setPerson(props.person);
     // eslint-disable-next-line react-hooks/exhaustive-deps

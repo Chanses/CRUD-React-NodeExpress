@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IPersonItem } from "../../../modals/IPerson";
 import ModalService from "../../../services/ModalService";
-import PersonRequests from "../../../services/PersonRequests";
+import PersonStore from "../../../stores/PersonStore";
 import TextButton from "../../Buttons/TextButton";
 import Input from "../../Inputs/Input";
 import "./CreateModal.css";
@@ -18,20 +18,23 @@ const CreateForm = () => {
   const nickNameRef = useRef<any>();
   const fullNameNameRef = useRef<any>();
   const AgeRef = useRef<any>();
+
   const createPerson = () => {
     try {
-      PersonRequests.createPerson(person);
+      PersonStore.createPerson(person);
       ModalService.closeModal("createModal");
     } catch (error) {
       setIsInputDisable(true);
       alert(error);
     }
   };
+
   useEffect(() => {
     nickNameRef.current.focus();
     fullNameNameRef.current.focus();
     AgeRef.current.focus();
   }, []);
+
   return (
     <form
       className="CreateForm"
